@@ -1,4 +1,4 @@
-# Slottery – the slack lottery.
+# Slottery – the Slack lottery.
 
 With Slottery, members of a Slack channel can be drawn and notified. For example, Slottery can be used to organize lunch or coffee dates with randomly selected colleagues.
 
