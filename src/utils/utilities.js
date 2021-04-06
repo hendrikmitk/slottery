@@ -22,7 +22,7 @@ const getMemberIds = async (token, channelId) => {
 const drawItems = async (arr, qty) => {
 	const output = [];
 	for (let i = 0; i < qty; i++) {
-		let elem = arr[Math.floor(Math.random() * arr.length)];
+		let elem = await arr[Math.floor(Math.random() * arr.length)];
 		if (output.includes(elem)) {
 			return;
 		}

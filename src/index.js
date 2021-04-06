@@ -21,6 +21,7 @@ app.use(
 /////////////////
 
 app.use('/members', require('./routes/members'));
+app.use('/drawing', require('./routes/drawing'));
 
 /////////////////
 // L I S T E N //
