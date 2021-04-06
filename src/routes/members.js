@@ -50,10 +50,7 @@ router.get('/details', (req, res) => {
 				const vacayMembers = {};
 				const workingMembers = {};
 				Object.keys(memberData).forEach(key => {
-					if (
-						memberData[key].status_text == 'Im Urlaub' ||
-						memberData[key].status_emoji == ':palm_tree:'
-					) {
+					if (memberData[key].status_text == 'Im Urlaub' || memberData[key].status_emoji == ':palm_tree:') {
 						vacayMembers[key] = memberData[key];
 					} else {
 						workingMembers[key] = memberData[key];

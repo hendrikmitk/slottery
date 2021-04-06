@@ -12,9 +12,7 @@ const url = 'https://slack.com/api';
 
 // Get array of user ids for a Slack channel
 const getMemberIds = async (token, channelId) => {
-	const output = await axios.get(
-		`${url}/conversations.members?token=${token}&channel=${channelId}`
-	);
+	const output = await axios.get(`${url}/conversations.members?token=${token}&channel=${channelId}`);
 	return output.data;
 };
 
