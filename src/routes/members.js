@@ -90,29 +90,19 @@ router.get('/details', (req, res) => {
 
 // Get details of single channel member
 router.get('/details/:id', (req, res) => {
-	// TODO Output comprehensible message when id param is missing
-	getMemberIds(token, drawChannel)
-		.then(response => {
-			return response.members;
-		})
-		.then(memberIds => {
-			retrieveMemberData(memberIds, token).then(memberData => {
-				Object.keys(memberData).forEach(key => {
-					if (key === req.params.id) {
-						res.status(200).json({
-							code: res.statusCode,
-							status: 'OK',
-							description: `Details retrieved for member ${req.params.id}`,
-							data: (memberData[key] = {
-								email: memberData[key].email,
-								real_name: memberData[key].real_name,
-								display_name: memberData[key].display_name,
-								status_text: memberData[key].status_text,
-								status_emoji: memberData[key].status_emoji
-							})
-						});
-					}
-				});
+	retrieveMemberData([req.params.id], token)
+		.then(memberData => {
+			res.status(200).json({
+				code: res.statusCode,
+				status: 'OK',
+				description: `Details retrieved for member ${req.params.id}`,
+				data: {
+					email: memberData[req.params.id].email,
+					real_name: memberData[req.params.id].real_name,
+					display_name: memberData[req.params.id].display_name,
+					status_text: memberData[req.params.id].status_text,
+					status_emoji: memberData[req.params.id].status_emoji
+				}
 			});
 		})
 		.catch(err => {
