@@ -47,6 +47,37 @@ router.get('/details', (req, res) => {
 		})
 		.then(memberIds => {
 			retrieveMemberData(memberIds, token).then(memberData => {
+				const vacayMembers = {};
+				const workingMembers = {};
+				Object.keys(memberData).forEach(key => {
+					if (
+						memberData[key].status_text == 'Im Urlaub' ||
+						memberData[key].status_emoji == ':palm_tree:'
+					) {
+						vacayMembers[key] = memberData[key];
+					} else {
+						workingMembers[key] = memberData[key];
+					}
+				});
+
+				if (req.query.vacationing == 'true' || req.query.vacationing == '1') {
+					res.status(200).json({
+						code: res.statusCode,
+						status: 'OK',
+						description: `Member on vacation details retrieved for channel ${drawChannel}`,
+						data: vacayMembers
+					});
+					return;
+				}
+				if (req.query.vacationing == 'false' || req.query.vacationing == '0') {
+					res.status(200).json({
+						code: res.statusCode,
+						status: 'OK',
+						description: `Member not on vacation details retrieved for channel ${drawChannel}`,
+						data: workingMembers
+					});
+					return;
+				}
 				res.status(200).json({
 					code: res.statusCode,
 					status: 'OK',
