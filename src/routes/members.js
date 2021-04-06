@@ -30,7 +30,7 @@ router.get('/', (req, res) => {
 			res.status(200).json({
 				code: res.statusCode,
 				status: 'OK',
-				description: `Members retrieved for channel ${drawChannel}`,
+				description: `Members retrieved`,
 				data: response.members
 			});
 		})
@@ -61,7 +61,7 @@ router.get('/details', (req, res) => {
 					res.status(200).json({
 						code: res.statusCode,
 						status: 'OK',
-						description: `Member on vacation details retrieved for channel ${drawChannel}`,
+						description: `Member on vacation details retrieved`,
 						data: vacayMembers
 					});
 					return;
@@ -70,7 +70,7 @@ router.get('/details', (req, res) => {
 					res.status(200).json({
 						code: res.statusCode,
 						status: 'OK',
-						description: `Member not on vacation details retrieved for channel ${drawChannel}`,
+						description: `Member not on vacation details retrieved`,
 						data: workingMembers
 					});
 					return;
@@ -78,7 +78,7 @@ router.get('/details', (req, res) => {
 				res.status(200).json({
 					code: res.statusCode,
 					status: 'OK',
-					description: `Member details retrieved for channel ${drawChannel}`,
+					description: `Member details retrieved`,
 					data: memberData
 				});
 			});
