@@ -23,8 +23,24 @@ const { getMemberIds, retrieveMemberData } = require('../utils/utilities');
 const token = process.env.TOKEN; // Slack API token
 const drawChannel = process.env.DRAWCHANNEL; // Slack channel to draw from
 
-// Get data of all channel members
+// Get all channel members
 router.get('/', (req, res) => {
+	getMemberIds(token, drawChannel)
+		.then(response => {
+			res.status(200).json({
+				code: res.statusCode,
+				status: 'OK',
+				description: `Members retrieved for channel ${drawChannel}`,
+				data: response.members
+			});
+		})
+		.catch(err => {
+			console.log(err);
+		});
+});
+
+// Get details of all channel members
+router.get('/details', (req, res) => {
 	getMemberIds(token, drawChannel)
 		.then(response => {
 			return response.members;
@@ -34,7 +50,7 @@ router.get('/', (req, res) => {
 				res.status(200).json({
 					code: res.statusCode,
 					status: 'OK',
-					description: `Data retrieved for channel ${drawChannel}`,
+					description: `Member details retrieved for channel ${drawChannel}`,
 					data: memberData
 				});
 			});
@@ -44,8 +60,9 @@ router.get('/', (req, res) => {
 		});
 });
 
-// Get data of single channel member
-router.get('/:id', (req, res) => {
+// Get details of single channel member
+router.get('/details/:id', (req, res) => {
+	// TODO Output comprehensible message when id param is missing
 	getMemberIds(token, drawChannel)
 		.then(response => {
 			return response.members;
@@ -57,7 +74,7 @@ router.get('/:id', (req, res) => {
 						res.status(200).json({
 							code: res.statusCode,
 							status: 'OK',
-							description: `Data retrieved for member ${req.params.id}`,
+							description: `Details retrieved for member ${req.params.id}`,
 							data: (memberData[key] = {
 								email: memberData[key].email,
 								real_name: memberData[key].real_name,
