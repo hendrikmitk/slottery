@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
 				res.status(200).json({
 					code: res.statusCode,
 					status: 'OK',
-					description: `Data retrieved for members of channel ${drawChannel}`,
+					description: `Data retrieved for channel ${drawChannel}`,
 					data: memberData
 				});
 			});
@@ -57,7 +57,7 @@ router.get('/:id', (req, res) => {
 						res.status(200).json({
 							code: res.statusCode,
 							status: 'OK',
-							description: `Data retrieved for member with ID ${req.params.id}`,
+							description: `Data retrieved for member ${req.params.id}`,
 							data: (memberData[key] = {
 								email: memberData[key].email,
 								real_name: memberData[key].real_name,
