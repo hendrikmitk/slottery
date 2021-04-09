@@ -17,14 +17,15 @@ const getMemberIds = async (token, channelId) => {
 };
 
 // Draw certain number of items from array
-const drawItems = async (arr, qty) => {
+const drawItems = (arr, qty) => {
 	const output = [];
-	for (let i = 0; i < qty; i++) {
-		let elem = await arr[Math.floor(Math.random() * arr.length)];
-		if (output.includes(elem)) {
-			return;
+	for (let i = 0; i < qty; ) {
+		let random = Math.floor(Math.random() * arr.length);
+		if (output.indexOf(arr[random]) !== -1) {
+			continue;
 		}
-		output.push(elem);
+		output.push(arr[random]);
+		i++;
 	}
 	return output;
 };
