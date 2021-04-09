@@ -18,8 +18,13 @@ const getMemberIds = async (token, channelId) => {
 
 // Draw certain number of items from array
 const drawItems = (arr, qty) => {
+	if (!Array.isArray(arr)) return;
+	if (qty == undefined) return arr;
+	if (qty > arr.length) return;
+	if (isNaN(qty)) return;
+
 	const output = [];
-	for (let i = 0; i < qty; ) {
+	for (let i = 0; i < Math.round(qty); ) {
 		let random = Math.floor(Math.random() * arr.length);
 		if (output.indexOf(arr[random]) !== -1) {
 			continue;
