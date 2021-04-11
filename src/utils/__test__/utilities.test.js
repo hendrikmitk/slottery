@@ -2,17 +2,17 @@ const { drawItems } = require('../utilities');
 
 const names = ['Kalle', 'Per', 'Albin', 'Magnus', 'Viggo', 'Olaf', 'Knut', 'Gunnar', 'Eric', 'Stig', 'Tore', 'Ivar'];
 
-describe('function: drawItems', () => {
-	test('returns requested amount of items', () => {
+describe('drawItems function', () => {
+	test('return requested amount of items', () => {
 		const result = drawItems(names, 5);
 		expect(result).toHaveLength(5);
 	});
-	test('more items requested than available', () => {
+	test('not return more items than available', () => {
 		const result = drawItems(names, 31);
 		expect(result).toBeFalsy();
 	});
-	describe('argument: arr', () => {
-		test('accepts only typeof array', () => {
+	describe('arr argument', () => {
+		test('accept only typeof array', () => {
 			const result = drawItems('names', 7);
 			expect(result).toBeFalsy();
 		});
@@ -21,7 +21,7 @@ describe('function: drawItems', () => {
 			expect(result).toBeFalsy();
 		});
 	});
-	describe('argument: qty', () => {
+	describe('qty argument', () => {
 		test('accept no strings', () => {
 			const result = drawItems(names, 'foo');
 			expect(result).toBeFalsy();
