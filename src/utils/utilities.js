@@ -74,6 +74,11 @@ const postSlackMessage = async (token, channelId, content) => {
 	return request;
 };
 
+// Get Slack message text
+const getMessageText = (a, b, c, d) => {
+	return `:tada: Congratulations to the lucky winners <@${a}>, <@${b}>, <@${c}> and <@${d}> :rocket:`;
+};
+
 /////////////////
 // E X P O R T //
 /////////////////
@@ -82,5 +87,6 @@ module.exports = {
 	getMemberIds,
 	drawItems,
 	retrieveMemberData,
-	postSlackMessage
+	postSlackMessage,
+	getMessageText
 };

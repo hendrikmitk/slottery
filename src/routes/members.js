@@ -2,14 +2,6 @@ const express = require('express');
 const router = express.Router();
 require('dotenv/config');
 
-const app = express();
-
-/////////////////
-// M I D D L E //
-/////////////////
-
-app.use(express.json());
-
 /////////////////
 // I M P O R T //
 /////////////////

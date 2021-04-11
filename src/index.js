@@ -15,6 +15,7 @@ app.use(
 		methods: 'GET'
 	})
 );
+app.use(express.json());
 
 /////////////////
 // R O U T E S //
