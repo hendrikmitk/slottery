@@ -24,7 +24,7 @@ router.get('/:qty', (req, res) => {
 			res.status(200).json({
 				code: res.statusCode,
 				status: 'OK',
-				description: `${req.params.qty} items drawn from channel ${drawChannel}`,
+				description: `${req.params.qty} items selected from channel`,
 				data: selectedItems
 			});
 		})
@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
 			res.status(200).json({
 				code: res.statusCode,
 				status: 'OK',
-				description: `Sent message to Slack channel ${announceChannel}`,
+				description: `Sent message to Slack channel`,
 				data: messageText
 			});
 		})
