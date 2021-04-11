@@ -24,13 +24,12 @@ const drawItems = (arr, qty) => {
 	if (isNaN(qty)) return;
 
 	const output = [];
-	for (let i = 0; i < Math.round(qty); ) {
+	for (let i = 0; i < Math.round(qty); i++) {
 		let random = Math.floor(Math.random() * arr.length);
 		if (output.indexOf(arr[random]) !== -1) {
 			continue;
 		}
 		output.push(arr[random]);
-		i++;
 	}
 	return output;
 };
@@ -75,8 +74,16 @@ const postSlackMessage = async (token, channelId, content) => {
 };
 
 // Get Slack message text
-const getMessageText = (a, b, c, d) => {
-	return `:tada: Congratulations to the lucky winners <@${a}>, <@${b}>, <@${c}> and <@${d}> :rocket:`;
+const getMessageText = arr => {
+	if (arr == undefined) return;
+
+	if (arr.length == 1) return `:tada: Congratulations to the one-and-only lucky winner <@${arr[0]}> :rocket:`;
+
+	let list = [];
+	for (let i = 0; i < arr.length - 1; i++) {
+		list.push('<@' + arr[i] + '>');
+	}
+	return `:tada: Congratulations to the lucky winners ${list.join(', ')} and <@${arr.slice(-1)}> :rocket:`;
 };
 
 /////////////////

@@ -36,7 +36,7 @@ router.get('/:qty', (req, res) => {
 // Announce lottery winners in Slack channel
 router.post('/', (req, res) => {
 	const items = req.body;
-	const messageText = getMessageText(items[0], items[1], items[2], items[3]);
+	const messageText = getMessageText(items);
 	postSlackMessage(token, announceChannel, messageText)
 		.then(() => {
 			res.status(200).json({
